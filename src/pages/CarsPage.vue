@@ -25,7 +25,7 @@ onMounted(() => {
 
 
 <template>
-  <div class="container">
+  <div class="container text-light">
     <section class="row">
       <div class="col-12 mt-3 d-flex align-items-center gap-4">
         <h1>Cars</h1>
