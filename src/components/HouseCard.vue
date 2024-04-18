@@ -10,6 +10,8 @@ defineProps({
     house: House
 })
 
+const account = computed(() => AppState.account)
+
 async function condemnHouse(houseId) {
     try {
         const confirmCondemn = await Pop.confirm("Please verify condemnation.")
@@ -35,8 +37,8 @@ async function condemnHouse(houseId) {
             <h3 class="fs-5">${{ house.price.toLocaleString() }}</h3>
             <p>Listed on {{ house.createdAt.toLocaleDateString() }} by {{ house.creator.name }}</p>
             <p>{{ house.description }}</p>
-            <button class="btn btn-outline-danger" :title="`Condemn this house ${house.description}`"
-                @click="condemnHouse(house.id)">
+            <button v-if="house.creatorId == account?.id" class="btn btn-outline-danger"
+                :title="`Condemn this house ${house.description}`" @click="condemnHouse(house.id)">
                 <i class="mdi mdi-home-remove"></i>
             </button>
         </div>

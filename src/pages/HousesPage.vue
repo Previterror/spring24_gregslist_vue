@@ -7,6 +7,7 @@ import HouseCard from '../components/HouseCard.vue';
 import { logger } from '../utils/Logger.js';
 
 const houses = computed(() => AppState.houses)
+const account = computed(() => AppState.account)
 
 async function getHouses() {
   try {
@@ -32,7 +33,8 @@ onMounted(() => {
     <section class="row">
       <div class="col-12 mt-3 d-flex align-items-center gap-4">
         <h1>Houses</h1>
-        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#houseModal">
+        <button v-if="!account" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+          data-bs-target="#houseModal" title="List a House">
           <i class="mdi mdi-home-plus"></i>
         </button>
       </div>
